@@ -27,9 +27,5 @@ namespace _06_Multipaginas_Canvas
             this.InitializeComponent();
         }
 
-        private void ic_PointerExited(object sender, PointerRoutedEventArgs e)
-        {
-
-        }
     }
 }
