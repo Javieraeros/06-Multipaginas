@@ -8,8 +8,17 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <InkCanvas Name="ic" >
-
-        </InkCanvas>
+        <RelativePanel Canvas.ZIndex="1">
+            <Button Name="btnLapizGoma" 
+                    Content="Borra"
+                    Click="btnLapizGoma_Click"
+                   />
+            <Button Name="btnAtras" 
+                    Content="Volver" 
+                    Click="btnAtras_Click"
+                    RelativePanel.AlignRightWithPanel="True" 
+                    />
+        </RelativePanel>
+        <InkCanvas Name="lienzo"/>
     </Grid>
 </Page>

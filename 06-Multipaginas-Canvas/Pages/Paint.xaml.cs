@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.UI.Input.Inking;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -22,10 +23,34 @@ namespace _06_Multipaginas_Canvas
     /// </summary>
     public sealed partial class Paint : Page
     {
+        private bool lapizActivo;
         public Paint()
         {
             this.InitializeComponent();
+            lienzo.InkPresenter.InputDeviceTypes = Windows.UI.Core.CoreInputDeviceTypes.Mouse | Windows.UI.Core.CoreInputDeviceTypes.Touch;
+            lienzo.InkPresenter.InputProcessingConfiguration.Mode = InkInputProcessingMode.Inking;
+            lapizActivo = true;
         }
 
+        private void btnAtras_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MainPage));
+        }
+
+       private void btnLapizGoma_Click(object sender, RoutedEventArgs e)
+        {
+            if (lapizActivo)
+            {
+                lienzo.InkPresenter.InputProcessingConfiguration.Mode = InkInputProcessingMode.Erasing;
+                lapizActivo = false;
+                btnLapizGoma.Content = "Escribe";
+            }
+            else
+            {
+                lienzo.InkPresenter.InputProcessingConfiguration.Mode = InkInputProcessingMode.Inking;
+                btnLapizGoma.Content = "Borra";
+                lapizActivo = true;
+            }
+        }
     }
 }
