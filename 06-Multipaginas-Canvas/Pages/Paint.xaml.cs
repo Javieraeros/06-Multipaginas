@@ -23,13 +23,13 @@ namespace _06_Multipaginas_Canvas
     /// </summary>
     public sealed partial class Paint : Page
     {
-        private bool lapizActivo;
+        //private bool lapizActivo;
         public Paint()
         {
             this.InitializeComponent();
             lienzo.InkPresenter.InputDeviceTypes = Windows.UI.Core.CoreInputDeviceTypes.Mouse | Windows.UI.Core.CoreInputDeviceTypes.Touch;
             lienzo.InkPresenter.InputProcessingConfiguration.Mode = InkInputProcessingMode.Inking;
-            lapizActivo = true;
+            //lapizActivo = true;
         }
 
         private void btnAtras_Click(object sender, RoutedEventArgs e)
@@ -39,17 +39,21 @@ namespace _06_Multipaginas_Canvas
 
        private void btnLapizGoma_Click(object sender, RoutedEventArgs e)
         {
-            if (lapizActivo)
+            if (lienzo.InkPresenter.InputProcessingConfiguration.Mode == InkInputProcessingMode.Inking)
             {
                 lienzo.InkPresenter.InputProcessingConfiguration.Mode = InkInputProcessingMode.Erasing;
-                lapizActivo = false;
+                //lapizActivo = false;
                 btnLapizGoma.Content = "Escribe";
+                /*Otra forma de hacerlo:
+                 * Button btn = (Button)sender;
+                btn.Content = "Escribe";
+                */
             }
             else
             {
                 lienzo.InkPresenter.InputProcessingConfiguration.Mode = InkInputProcessingMode.Inking;
                 btnLapizGoma.Content = "Borra";
-                lapizActivo = true;
+                //lapizActivo = true;
             }
         }
     }
